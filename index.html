@@ -10,48 +10,46 @@
 </head>
 <body ng-app="AirApp">
 	<div class="wrap" ng-controller="MainController">
-		<nav class="navbar navbar-inverse">
+		<nav class="navbar navbar-default">
 			<div class="container">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="#">全國空氣品質即時污染指標</a>
+					<p class="navbar-text"><a class="navbar-brand navbar-link" href="">全國空氣品質即時污染指標</a></p> 
 				</div>
 				<ul class="nav navbar-nav navbar-right">
 					<li>
-						<a href="">錯誤回報</a>
+						<a href="mailto:sw9856@gmail.com">錯誤回報</a>
 					</li>
 					<li>
-						<a href="">資料來源: 行政院環境報護署</a>
+						<a href="http://opendata.epa.gov.tw/Home/Index/" target="_blank">資料來源: 行政院環境報護署</a>
 					</li>
 					<li>
-						<a href="">License: CC0</a>
+						<a href="http://creativecommons.tw/cc0" target="_blank">License: CC0</a>
 					</li>
 				</ul>
 			</div>
-
 		</nav>
 		<div class="area" ng-show="type=='area'">
 		 <div class="container">
-			<div class="form-group" ">
-				<select class="form-control" ng-model="area" ng-options="o for o in taiwanCounty">
+			<div class="form-group">
+				<select class="form-control" ng-model="county" ng-options="o for o in taiwanCounty">
 					<option value="">-- 依縣市搜尋 --</option>
 				</select>
 			</div>
-
 			<div class="row">
 				<table class="table table-striped table-hover">
 				 <tr>
-					<th width="10%">測站名稱</th>
-					<th width="20%">縣市</th>
+					<th width="15%">測站名稱</th>
+					<th width="15%">縣市</th>
 					<th width="30%">空氣汙染指標</th>
 					<th width="30%">指標汙染物</th>
 					<th width="10%">狀態</th>
 				 </tr>
-				 <tr ng-repeat="air in countyData">
+				 <tr ng-repeat="air in countyData | filter:county | limitTo:100">
 					<td>{{air.SiteName}}</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td><span class="label label-primary">{{air.County}}</span> </td>
+					<td>{{air.PSI}}</td>
+					<td>{{air.MajorPollutant}}</td>
+					<td>{{air.Status}}</td>
 				 </tr>
 				</table>
 			</div>
@@ -59,7 +57,6 @@
 		</div>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-	<script src="javascript/angular-sanitize.js"></script>
 	<script src="javascript/main.js"></script>
 </body>
 </html>
