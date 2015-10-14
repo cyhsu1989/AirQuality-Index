@@ -8,5 +8,4 @@ app.controller('MainController', function($scope,$http,$sce){
 	$http.get('./data/data.json').success(function(data){
 		$scope.countyData = data;
 	});
-
 });

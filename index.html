@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
 
 </head>
 <body ng-app="AirApp">
@@ -13,7 +14,7 @@
 		<nav class="navbar navbar-default">
 			<div class="container">
 				<div class="navbar-header">
-					<p class="navbar-text"><a class="navbar-brand navbar-link" href="">全國空氣品質即時污染指標</a></p> 
+					<p class="navbar-text"><a class="navbar-brand navbar-link" href="#">全國空氣品質即時污染指標</a></p> 
 				</div>
 				<ul class="nav navbar-nav navbar-right">
 					<li>
@@ -49,7 +50,7 @@
 					<td><span class="label label-primary">{{air.County}}</span> </td>
 					<td>{{air.PSI}}</td>
 					<td>{{air.MajorPollutant}}</td>
-					<td>{{air.Status}}</td>
+					<td><span class="label label-default" ng-class="{'label-success': {{air.PSI<= 50}}, 'label-danger': {{air.PSI>= 101}}}">{{air.Status}}</span></td>
 				 </tr>
 				</table>
 			</div>
