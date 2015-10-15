@@ -10,7 +10,7 @@
 
 </head>
 <body ng-app="AirApp">
-	<div class="wrap" ng-controller="MainController">
+	<div class="wrap" ng-controller="MainController as airCtrl">
 		<nav class="navbar navbar-default">
 			<div class="container">
 				<div class="navbar-header">
@@ -31,6 +31,9 @@
 		</nav>
 		<div class="area" ng-show="type=='area'">
 		 <div class="container">
+		 	 <div class="alert alert-success" role="alert">
+        		發布時間: {{countyData[0].PublishTime}}<br>
+        	</div>
 			<div class="form-group">
 				<select class="form-control" ng-model="county" ng-options="o for o in taiwanCounty">
 					<option value="">-- 依縣市搜尋 --</option>
@@ -39,10 +42,10 @@
 			<div class="row">
 				<table class="table table-striped table-hover">
 				 <tr>
-					<th width="15%">測站名稱</th>
-					<th width="15%">縣市</th>
-					<th width="30%">空氣汙染指標</th>
-					<th width="30%">指標汙染物</th>
+					<th width="20%">測站名稱</th>
+					<th width="25%">縣市</th>
+					<th width="25%">空氣汙染指標</th>
+					<th width="20%">指標汙染物</th>
 					<th width="10%">狀態</th>
 				 </tr>
 				 <tr ng-repeat="air in countyData | filter:county | limitTo:100">
