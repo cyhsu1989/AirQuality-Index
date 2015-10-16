@@ -28,18 +28,29 @@
 					</li>
 				</ul>
 			</div>
+
+			<div class="btn-group btn-group-justified" role="group">
+				<div class="btn-group" role="group">
+					<a class="btn btn-default" href="#area"  ng-click="type='area'" ng-class="{'btn-info': type=='area'}">汙染指標</a>
+				</div>
+				<div class="btn-group " role="group">
+					<a class="btn btn-default" href="#detail" ng-click="type='detail'" ng-class="{'btn-info': type=='detail'}">詳細數據</a>
+				</div>
+			</div>
 		</nav>
-		<div class="area" ng-show="type=='area'">
+		
+
+		<div class="Air" >
 		 <div class="container">
-		 	 <div class="alert alert-success" role="alert">
-        		發布時間: {{countyData[0].PublishTime}}<br>
-        	</div>
+			 <div class="alert alert-success" role="alert">
+				發布時間: {{countyData[0].PublishTime}}<br>
+			</div>
 			<div class="form-group">
 				<select class="form-control" ng-model="county" ng-options="o for o in taiwanCounty">
 					<option value="">-- 依縣市搜尋 --</option>
 				</select>
 			</div>
-			<div class="row">
+			<div class="area" ng-show="type=='area'">
 				<table class="table table-striped table-hover">
 				 <tr>
 					<th width="20%">測站名稱</th>
@@ -57,8 +68,45 @@
 				 </tr>
 				</table>
 			</div>
+
+			<div class="detail" ng-show="type=='detail'">
+				<table class="table table-striped table-hover">
+				 <tr>
+					<th width="5%">測站名稱</th>
+					<th width="%">縣市</th>
+					<th>二氧化硫濃度</th>
+					<th>一氧化碳濃度</th>
+					<th>臭氧濃度</th>
+					<th>懸浮微粒濃度</th>
+					<th>細懸浮微粒濃度</th>
+					<th>二氧化氮濃度</th>
+					<th>風速</th>
+					<th>風向</th>
+					<th>細懸浮微粒指標</th>
+					<th>氮氧化物</th>
+					<th>一氧化氮</th>
+				 </tr>
+				 <tr ng-repeat="air in countyData | filter:county | limitTo:100">
+					<td>{{air.SiteName}}</td>
+					<td><span class="label label-primary">{{air.County}}</span> </td>
+					<td>{{air.SO2}}</td>
+					<td>{{air.CO}}</td>
+					<td>{{air.O3}}</td>
+					<td>{{air.PM10}}</td>
+					<td>{{air["PM2.5"]}}</td>
+					<td>{{air.NO2}}</td>
+					<td>{{air.WindSpeed}}</td>
+					<td>{{air.WindDirec}}</td>
+					<td>{{air.FPMI}}</td>
+					<td>{{air.NOx}}</td>
+					<td>{{air.NO}}</td>
+				 </tr>
+				</table>
+			</div>
 		 </div>
 		</div>
+
+		
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
 	<script src="javascript/main.js"></script>
