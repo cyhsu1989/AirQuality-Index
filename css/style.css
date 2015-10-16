@@ -1,0 +1,7 @@
+.alert, .table, th{
+	text-align: center;
+}
+
+.detail th{
+	width: 7%;
+}
