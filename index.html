@@ -67,12 +67,12 @@
 					<th width="20%">指標汙染物</th>
 					<th width="10%">狀態</th>
 				 </tr>
-				 <tr ng-repeat="air in countyData | filter:county | limitTo:100">
+				 <tr ng-repeat="air in countyData | filter: (county ? county : '') | limitTo:100">
 					<td>{{air.SiteName}}</td>
 					<td><span class="label label-primary">{{air.County}}</span> </td>
-					<td>{{air.PSI}}</td>
-					<td>{{air.MajorPollutant}}</td>
-					<td><span class="label label-default" ng-class="{'label-success': {{air.PSI<= 50}}, 'label-danger': {{air.PSI>= 101}}}">{{air.Status}}</span></td>
+					<td>{{air.AQI}}</td>
+					<td>{{air.Pollutant}}</td>
+					<td><span class="label label-default" ng-class="{'label-success': {{air.AQI<= 50}}, 'label-danger': {{air.AQI>= 101}}}">{{air.Status}}</span></td>
 				 </tr>
 				</table>
 			</div>
@@ -90,11 +90,10 @@
 					<th>二氧化氮濃度</th>
 					<th>風速</th>
 					<th>風向</th>
-					<th>細懸浮微粒指標</th>
 					<th>氮氧化物</th>
 					<th>一氧化氮</th>
 				 </tr>
-				 <tr ng-repeat="air in countyData | filter:county | limitTo:100">
+				 <tr ng-repeat="air in countyData | filter: (county ? county : '') | limitTo:100">
 					<td>{{air.SiteName}}</td>
 					<td><span class="label label-primary">{{air.County}}</span> </td>
 					<td>{{air.SO2}}</td>
@@ -105,7 +104,6 @@
 					<td>{{air.NO2}}</td>
 					<td>{{air.WindSpeed}}</td>
 					<td>{{air.WindDirec}}</td>
-					<td>{{air.FPMI}}</td>
 					<td>{{air.NOx}}</td>
 					<td>{{air.NO}}</td>
 				 </tr>
